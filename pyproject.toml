@@ -1,7 +1,7 @@
 [project]
-name = "wb_oemce"
+name = "WB-OEMC"
 version = "0.1.0"
-description = "Environment for wb_oemce project"
+description = "Environment for WB-OEMC project"
 requires-python = ">=3.12"
 dependencies = [
     "numpy",

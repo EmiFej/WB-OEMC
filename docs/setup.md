@@ -74,9 +74,12 @@ source .venv/bin/activate
 🔥 __Ensruing Repeatability tips__: 
 - 
 - If you want other developers/contributors to repeat your project, then remember to use the `uv.lock` command and make sure `pyproject.lock` file gets uploaded to git-repo.
-  - `uv.lock` will generate or update the `pyproject.lock` file with your latest `pyproject.toml`. Make sure to commit the lock file to version control.
-  - when the user uses `uv pip install` (via the `Make it` command), the uv installer respects the `pyproject.lock` file for installing exact version of dependencies.  
+  - `uv lock` cmd will generate or update the `uv.lock` file with your latest installed dependencies. Make sure to commit the lock file to version control.
+  - when the user uses `uv pip install` (via the `Make it` command), the uv installer respects the `uv.lock` file for installing exact version of dependencies.  
+  - While the environment is synced automatically, it may also be explicitly synced using `uv sync` cmd
 
+
+uv sync
 ---
 
 # 🔥 Bonus Tip:
