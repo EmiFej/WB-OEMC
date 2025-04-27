@@ -2,6 +2,7 @@
 # Goal
 -  We want to create a repeatable environment.
 - ✅ We use [`uv`](https://docs.astral.sh/uv/) for fast installing + managing dependencies automatically.
+- ✅ We use `Makefile` to execute the sequentual comands for a successful setup of `uv` environment.
 
 # Actions for First time use:
 
