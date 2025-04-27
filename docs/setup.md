@@ -30,20 +30,20 @@ Change directory to your "WB-OEMC" folder and setup the environment manager as f
 ```bash
 cd <your-project-folder>
 ```
-## 2. 😎 The simplest command to do everything for you !
+## 2. The simplest command to do everything for you !
 - A `Makefile` is provided to do the environment setup for you.
   
 ```bash
 make it
 ```
 
-- It does the 3 core things:
+- It does three core things:
   - Activates the `uv` env `wb_oemc` from `.venv` directory
   - Installs the dependencies (as listed in `pyproject.toml`) in your environment `wb_oemc`
   - Activates the env `wb_oemc` as a default when you open-up this folder in vscode.
 
 
-## 4 🎯 Managing Dependencies
+## 3. Managing Dependencies 🎯
 
 | You want to...        | Command               |
 |-----------------------|------------------------|
@@ -94,7 +94,7 @@ You just need a `.vscode/settings.json` like:
 
 > ✨ With our makefile, We have already added this setup for you.
 ```
-- If yoour bash looks like `(wb_oemce) (base) your_linux_user_id` or  `(wb_oemce) (your_conda_env_name) your_linux_user_id`, then deactivate the conda env `deactivate base` or `deactivate your_env_name` to make sure everything is synced in `uv` ecosystem only.
+- If your bash looks like `(wb_oemce) (base) your_linux_user_id` or  `(wb_oemce) (your_conda_env_name) your_linux_user_id`, then deactivate the conda env `deactivate base` or `deactivate your_env_name` to make sure everything is synced in `uv` ecosystem only.
 
 
   
