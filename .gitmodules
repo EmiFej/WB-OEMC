@@ -1,16 +1,10 @@
-[submodule "models/BC_Nexus"]
-    path = models/BC_Nexus
-    url = https://github.com/DeltaE/BC_Nexus
-    branch = main
+[submodule "models/pypsa-eur"]
+    path = models/pypsa-eur
+    url = https://github.com/PyPSA/pypsa-eur
+    branch = XXXX
 
 
-[submodule "models/PyPSA_BC"]
-    path = models/PyPSA_BC
-    url = https://github.com/DeltaE/PyPSA_BC.git
-    branch = bc_combined_modelling
-
-
-[submodule "models/RESource"]
-	path = models/RESource
-	url = https://github.com/DeltaE/RESource
-    branch = development
+[submodule "models/osemosys_global"]
+	path = models/osemosys_global
+	url = https://github.com/OSeMOSYS/osemosys_global
+    branch = XXXX
