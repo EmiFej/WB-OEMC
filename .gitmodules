@@ -1,10 +1,12 @@
 [submodule "models/pypsa-eur"]
     path = models/pypsa-eur
     url = https://github.com/PyPSA/pypsa-eur
-    branch = XXXX
+    branch = master
+    release = v2025.04.0
+
 
 
 [submodule "models/osemosys_global"]
 	path = models/osemosys_global
 	url = https://github.com/OSeMOSYS/osemosys_global
-    branch = XXXX
+    	branch = XXXX
