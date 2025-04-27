@@ -29,16 +29,17 @@ Change directory to your "WB-OEMC" folder and setup the environment manager as f
 ```bash
 cd <your-project-folder>
 ```
-## 2. 😎 A simple command to do everything for you !
+## 2. 😎 The simplest command to do everything for you !
 - A `Makefile` is provided to do the environment setup for you.
   
 ```bash
 make it
 ```
-- It does the 3 core things:
-  - Activates the `uv` env 'wb_oemc` from `.venv` directory and instructions
-  - Installs the dependencies (as listed in `pyproject.toml`) in your environment `wb_oemc`
 
+- It does the 3 core things:
+  - Activates the `uv` env `wb_oemc` from `.venv` directory
+  - Installs the dependencies (as listed in `pyproject.toml`) in your environment `wb_oemc`
+  - Activates the env `wb_oemc` as a default when you open-up this folder in vscode.
 
 
 ## 4 🎯 Managing Dependencies
