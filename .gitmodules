@@ -1,0 +1,16 @@
+[submodule "models/BC_Nexus"]
+    path = models/BC_Nexus
+    url = https://github.com/DeltaE/BC_Nexus
+    branch = main
+
+
+[submodule "models/PyPSA_BC"]
+    path = models/PyPSA_BC
+    url = https://github.com/DeltaE/PyPSA_BC.git
+    branch = bc_combined_modelling
+
+
+[submodule "models/RESource"]
+	path = models/RESource
+	url = https://github.com/DeltaE/RESource
+    branch = development

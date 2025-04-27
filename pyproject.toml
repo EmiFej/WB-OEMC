@@ -1,0 +1,21 @@
+[project]
+name = "wb_oemce"
+version = "0.1.0"
+description = "Environment for wb_oemce project"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "jupyterlab",
+    "scikit-learn",
+    "pypsa", # if you're doing energy system modeling
+    "plotly",
+    "plotly-express",
+    "notebook",
+    "ipykernel",
+    "otoole>=1.1.5",
+    "colorama>=0.4.6",
+]
+
+
