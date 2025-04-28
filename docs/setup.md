@@ -1,9 +1,9 @@
-# WB-OEMC Environment Setup Instructions:
+# WB-OEMC Modelling Environment Setup Instructions:
 
 - This instruction assumes that the :
   - user is using __Linux__ (or __WSL in Windows Machine__) or __MAC-OS__
   - has `conda` and `pip` installed and familiar using bash/terminal commands. 
-- It is recommended to use vscode for versatile adaptability.
+- It is recommended to use `vscode` for versatile adaptability and the `ruff` extension for linting and code quality checks.
 
 
 ## Clone the repo : 
