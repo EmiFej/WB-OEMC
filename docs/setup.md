@@ -28,7 +28,7 @@ cd <your-project-folder>
 
 # 🔥 Tip:
 
-- Update the 'Makefile' with your frequent use commands to handle the commands gracefully !
+- Update the __[Makefile](https://github.com/EmiFej/WB-OEMC/blob/main/Makefile)__ with your frequent use commands to handle the commands gracefully !
 - Use `make` commands to simplify repetitive tasks and ensure consistency.
 ---
 
