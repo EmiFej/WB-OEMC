@@ -1,25 +1,24 @@
 .PHONY: setup install clean vscode
 
 # Create and activate env, install dependencies
-it:
-	pip install uv
-	uv venv .venv
-	# Using bash to source and run commands in one line
-	. .venv/bin/activate && uv pip install --requirements pyproject.toml
-	# Set the default Python interpreter for VSCode
-	make vscode
+setup:
+	@echo "Creating and setting up the environment..."
+	conda env create -f env/environment.yml
+	@echo "Environment created. Please restart your shell or run 'conda activate wb_oemc' manually."
 
-# Install deps only
-install:
-	uv pip install --requirements pyproject.toml
+# Update the environment
+update:
+	@echo "Updating environment..."
+	conda env update -f env/environment.yml
+	@echo "Environment updated. Please restart your shell or run 'conda activate wb_oemc' manually."
 
-# Remove virtual env
+# Optional: clean up env (if you want this)
 clean:
-	rm -rf .venv
+	@echo "Removing the environment..."
+	conda env remove -n wb_oemc
+	@echo "Environment removed."
 
-# Create or modify VSCode settings to use the .venv Python interpreter
-vscode:
-	@echo "Setting up VSCode Python interpreter..."
-	# Create .vscode/settings.json if it doesn't exist and add the interpreter path
-	mkdir -p .vscode
-	echo '{ "python.defaultInterpreterPath": ".venv/bin/python" }' > .vscode/settings.json
+export:
+	@echo "Exporting the environment..."
+	conda env export -n wb_oemc > env/environment.yml
+	@echo "Environment exported to env/environment.yml."
