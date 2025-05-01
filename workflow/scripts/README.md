@@ -25,10 +25,10 @@ scrape – snakemake -s snakefile … (builds every CSV listed in rule all)
 
 # Configuring your run window
 ## Edit config.yaml:
-START_DATE: "2025-01-01"
-END_DATE: "2025-04-25"
-OUTPUT_DIR: "data"
-OVERWRITE:   false      # true = ignore cached CSVs
+START_DATE: "2025-01-01"<br/>
+END_DATE: "2025-04-25"<br/>
+OUTPUT_DIR: "data"<br/>
+OVERWRITE:   false      # true = ignore cached CSVs<br/>
 MAX_WORKERS: 10         # thread pool size. WARNING: Increasing this value could lead to failed downloads for certain dates.
 
 # Overview of the Energy Scrapers
