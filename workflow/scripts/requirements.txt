@@ -1,0 +1,23 @@
+aiohttp
+nest_asyncio
+# HTTP / HTML
+requests
+beautifulsoup4          # provides bs4
+
+# Data wrangling
+pandas>=2.0
+openpyxl>=3.1           # Excel reader for OST
+python-dateutil         # pandas depends on it but declare explicitly
+
+# PDFs
+pdfplumber              # wrapper around pdfminer
+
+# YAML & config
+PyYAML
+
+# Progress bar
+tqdm
+
+# Snakemake
+snakemake
+pypdf

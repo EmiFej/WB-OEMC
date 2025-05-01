@@ -1,0 +1,49 @@
+###############################################################################
+# Snakefile – unified DAG for demand + generation scrapers
+###############################################################################
+import sys
+PY = sys.executable                     # v-env python path
+
+configfile: "config.yaml"
+
+def overwrite_flag():
+    return "--overwrite" if config.get("OVERWRITE", False) else ""
+
+ODIR   = config["OUTPUT_DIR"]
+OWFLAG = overwrite_flag()
+
+# ─────────────────────────────────────────────────────────────────────────── #
+rule all:
+    input:
+        f"{ODIR}/mepso_data.csv",
+        f"{ODIR}/mepso_gen_mix.csv",   # NEW generation CSV
+        f"{ODIR}/ost_data.csv",
+        f"{ODIR}/nosbih_data.csv"
+
+# ─────────────────────────────────────────────────────────────────────────── #
+rule download_mepso:                    # existing
+    output: f"{ODIR}/mepso_data.csv"
+    params: flag = OWFLAG
+    shell:
+        "{PY} -m energy_scrapers.main --target mepso {params.flag}"
+
+# ─────────────────────────────────────────────────────────────────────────── #
+rule download_mepso_gen:                # NEW
+    output: f"{ODIR}/mepso_gen_mix.csv"
+    params: flag = OWFLAG
+    shell:
+        "{PY} -m energy_scrapers.main --target mepso_gen {params.flag}"
+
+# ─────────────────────────────────────────────────────────────────────────── #
+rule download_ost:                      # existing
+    output: f"{ODIR}/ost_data.csv"
+    params: flag = OWFLAG
+    shell:
+        "{PY} -m energy_scrapers.main --target ost {params.flag}"
+
+# ─────────────────────────────────────────────────────────────────────────── #
+rule download_nosbih:                   # existing
+    output: f"{ODIR}/nosbih_data.csv"
+    params: flag = OWFLAG
+    shell:
+        "{PY} -m energy_scrapers.main --target nosbih {params.flag}"

@@ -1,0 +1,11 @@
+# built artefacts
+*.egg-info/
+build/
+dist/
+
+# virtual environments
+.venv/
+data_scraping/
+
+# other
+.DS_store
