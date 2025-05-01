@@ -7,5 +7,10 @@ dist/
 .venv/
 data_scraping/
 
+# data outputs
+.data/
+
 # other
 .DS_store
+.snakemake
+log/
