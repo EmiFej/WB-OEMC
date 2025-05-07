@@ -35,7 +35,7 @@ This repository contains the combined [OSeMOSYS](https://github.com/OSeMOSYS)+[P
 Copyright 2025 WB-OEMC developers<br />The WB-OEMC model is licenced under the open source [MIT Licence](https://github.com/eliasinul/Combined_Modelling_Western_Balkan_Region/blob/main/LICENSE). However, different licenses and terms of use may apply to the various input data.
 
 # Developers
-The following individuals have made significant [contributions](https://github.com/eliasinul/Combined_Modelling_Western_Balkan_Region/graphs/contributors) to the development of the WB-OEMC model.
+The following individuals have made significant [contributions](https://github.com/EmiFej/WB-OEMC/graphs/contributors) to the development of the WB-OEMC model.
 
 - [Will Usher](https://github.com/willu47) (KTH)
 - [Muhammad Elias Islam](https://github.com/eliasinul) (SFU)
