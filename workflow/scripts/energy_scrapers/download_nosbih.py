@@ -131,8 +131,27 @@ def run(overwrite: bool = False) -> None:
                 }
             )
 
+    # ------------------------------------------------------------------ #
+    # Build dataframe and convert to "datetime" instead of separate date/hour
     df = pd.DataFrame(all_rows)
-    out_csv = os.path.join(OUTDIR, "nosbih_data.csv")
-    df.to_csv(out_csv, index=False, na_rep="")
-    print(f"✅ NOSBiH data saved to {out_csv} "
-          f"({df['date'].nunique()} days, {df['demand'].count()} hourly demand values)")
+    df["datetime"] = pd.to_datetime(df["date"]) + pd.to_timedelta(df["hour"] - 1, unit="h")
+
+    # Output 1: demand only
+    demand_df = df[["datetime", "demand"]].dropna(subset=["demand"]).sort_values("datetime")
+    demand_csv = os.path.join(OUTDIR, "nosbih_demand.csv")
+    demand_df.to_csv(demand_csv, index=False, na_rep="")
+
+    # Output 2: power generation only
+    gen_df = df[["datetime", "power_generation"]].dropna(subset=["power_generation"]).sort_values("datetime")
+    gen_csv = os.path.join(OUTDIR, "nosbih_generation.csv")
+    gen_df.to_csv(gen_csv, index=False, na_rep="")
+
+    # ------------------------------------------------------------------ #
+    print(
+        f"✅ NOSBiH data saved – Demand: {demand_csv} ({demand_df['datetime'].nunique()} hours, {demand_df['demand'].count()} values), "
+        f"Generation: {gen_csv} ({gen_df['datetime'].nunique()} hours, {gen_df['power_generation'].count()} values)"
+    )
+
+
+if __name__ == "__main__":
+    run()
