@@ -16,9 +16,10 @@ OWFLAG = overwrite_flag()
 rule all:
     input:
         f"{ODIR}/mepso_data.csv",
-        f"{ODIR}/mepso_gen_mix.csv",   # NEW generation CSV
+        f"{ODIR}/mepso_gen_mix.csv",   # generation mix (MEPSO)
         f"{ODIR}/ost_data.csv",
-        f"{ODIR}/nosbih_data.csv"
+        f"{ODIR}/nosbih_demand.csv",   # NEW demand CSV
+        f"{ODIR}/nosbih_generation.csv"  # NEW generation CSV
 
 # ─────────────────────────────────────────────────────────────────────────── #
 rule download_mepso:                    # existing
@@ -28,7 +29,7 @@ rule download_mepso:                    # existing
         "{PY} -m energy_scrapers.main --target mepso {params.flag}"
 
 # ─────────────────────────────────────────────────────────────────────────── #
-rule download_mepso_gen:                # NEW
+rule download_mepso_gen:                # existing generation mix scraper
     output: f"{ODIR}/mepso_gen_mix.csv"
     params: flag = OWFLAG
     shell:
@@ -42,8 +43,10 @@ rule download_ost:                      # existing
         "{PY} -m energy_scrapers.main --target ost {params.flag}"
 
 # ─────────────────────────────────────────────────────────────────────────── #
-rule download_nosbih:                   # existing
-    output: f"{ODIR}/nosbih_data.csv"
+rule download_nosbih:                   # updated – now emits two separate CSVs
+    output:
+        demand      = f"{ODIR}/nosbih_demand.csv",
+        generation  = f"{ODIR}/nosbih_generation.csv"
     params: flag = OWFLAG
     shell:
         "{PY} -m energy_scrapers.main --target nosbih {params.flag}"
