@@ -1,0 +1,2 @@
+workflow/scripts/data/*.csv
+workflow/scripts/energy_scrapers/__pycache__
