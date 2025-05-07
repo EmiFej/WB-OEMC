@@ -1,16 +1,18 @@
 # built artefacts
 *.egg-info/
-build/
-dist/
+/build/
+/dist/
 
 # virtual environments
 .venv/
-data_scraping/
+/data_scraping/
 
 # data outputs
-.data/
+/data/
 
 # other
-.DS_store
-.snakemake
-log/
+*.DS_Store
+.snakemake/
+./energy_scrapers/__pycache__/
+/energy_scrapers/__init__.py
+*.py[cod]
