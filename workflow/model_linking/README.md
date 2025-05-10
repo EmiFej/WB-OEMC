@@ -2,6 +2,24 @@
 
 The [model_linking](https://github.com/EmiFej/WB-OEMC/tree/main/workflow/model_linking) folder includes scripts to link OSeMOSYS and PyPSA-Eur using Benders Decomposition. 
 
+Example of how it would look when completed
+```text
+               (hourly load, VRE profile)         ┌───────────────┐
+        ┌──────────────────────────────┐          │ PyPSA “OPF +  │   Duals
+        │ OSeMOSYS master (5-year steps│───year──▶│  dispatch”    │────────┐
+        │ 2020…2050)                   │          └───────────────┘        │
+Cuts ───┼─ investment_vars, NPC obj    │◀──────────────────────────────────┘
+        └──────────────────────────────┘
+```
+And the steps would then include:
+1. Initial solve of OSeMOSYS with coarse op-cost proxies → invest₀
+2. Build PyPSA network for 2025 (say) with invest₀ capacities, run hourly dispatch → get dual prices λᴛ
+3. Generate cuts: add ∑λᴛ · capacity ≥ cost into master
+4. Re-optimise master → invest₁, repeat for each planning period / scenario
+5. Converge when upper- and lower-bound gap ≤ ε
+
+### Example of structure ###
+
 ```text
 benders-link/
 ├── data/
