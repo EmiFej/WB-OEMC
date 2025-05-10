@@ -6,9 +6,10 @@ This repository contains the combined [OSeMOSYS](https://github.com/OSeMOSYS)+[P
 ## Contents of the repository
 - docs
 - workflow
-- scripts
-  - '**energy_scraper**' scripts for collecting and harmonizing power sector data from local WB6 TSO's and power utilities.
-  - __get_resource_options_XXX.py__ for assessing the variable renewable energy (VRE) potential within the WB6 countries.
+  - Contains a description of the model linking between OSeMOSYS and PyPSA-Eur using Benders Decomposition
+  - scripts
+    - '**energy_scraper**' scripts for collecting and harmonizing power sector data from local WB6 TSO's and power utilities.
+    - __get_resource_options_XXX.py__ for assessing the variable renewable energy (VRE) potential within the WB6 countries.
 - models
   - Submodule repos sourced from Versions of [_OSeMOSYS_](https://github.com/OSeMOSYS/osemosys_global) and [_PyPSA_](https://github.com/PyPSA/pypsa-eur) framework based models.
 - data
