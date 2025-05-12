@@ -2,10 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 MEPSO hourly demand scraper
-==========================
-Covers both Macedonian and English row labels, both punctuation styles and
-occasional layout glitches (missing daily‑sum column or even one missing
-hour).  Produces a dense `mepso_data.csv` grid (date × hour).
 """
 from __future__ import annotations
 import os, re, logging, unicodedata, requests, pdfplumber, pandas as pd, yaml
@@ -147,7 +143,11 @@ def fetch_day(day: datetime, out_dir: str) -> list[dict]:
             raw  = resp.content
             vals = extract_via_table(raw) or extract_via_regex(raw)
             if vals:
-                return [{"date": day.strftime("%Y-%m-%d"), "hour": h + 1, "demand": v} for h, v in enumerate(vals)]
+                return [{
+                    "date": day.strftime("%Y-%m-%d"),
+                    "hour": h + 1,
+                    "demand": v,
+                } for h, v in enumerate(vals)]
             # stash for manual inspection
             ext  = "pdf" if raw[:4] == b"%PDF" else "bin"
             fname = os.path.join(out_dir, f"mepso_{day:%Y-%m-%d}_unparsed.{ext}")
@@ -161,12 +161,15 @@ def fetch_day(day: datetime, out_dir: str) -> list[dict]:
 # ───────────── main entry ───────────────────────────────────────────────
 
 def run(overwrite: bool = False) -> None:
-    cfg = yaml.safe_load(open(os.path.join(os.path.dirname(__file__), "..", "config.yaml"), encoding="utf-8"))
+    cfg_path = os.path.join(os.path.dirname(__file__), "..", "config.yaml")
+    cfg = yaml.safe_load(open(cfg_path, encoding="utf-8"))
+
     start = datetime.strptime(cfg["START_DATE"], "%Y-%m-%d")
     end   = datetime.strptime(cfg["END_DATE"], "%Y-%m-%d")
     out_dir, workers = cfg["OUTPUT_DIR"], int(cfg["MAX_WORKERS"])
     os.makedirs(out_dir, exist_ok=True)
 
+    # ── fetch all days in parallel ───────────────────────────────────────
     days = [start + timedelta(days=i) for i in range((end - start).days + 1)]
     rows: list[dict] = []
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -174,13 +177,27 @@ def run(overwrite: bool = False) -> None:
         for fut in tqdm(as_completed(futures), total=len(futures), unit="day"):
             rows.extend(fut.result())
 
-    skel = pd.MultiIndex.from_product([pd.date_range(start, end).strftime("%Y-%m-%d"), range(1, 25)], names=["date", "hour"]).to_frame(index=False)
+    # ── build a dense skeleton (date × hour) then merge ──────────────────
+    skel_idx = pd.MultiIndex.from_product(
+        [pd.date_range(start, end).strftime("%Y-%m-%d"), range(1, 25)],
+        names=["date", "hour"],
+    ).to_frame(index=False)
     real = pd.DataFrame(rows, columns=["date", "hour", "demand"])
-    df   = skel.merge(real, how="left", on=["date", "hour"]).sort_values(["date", "hour"])
+    df   = skel_idx.merge(real, how="left", on=["date", "hour"]).sort_values(["date", "hour"])
 
-    out_path = os.path.join(out_dir, "mepso_data.csv")
-    df.to_csv(out_path, index=False, na_rep="")
-    print(f"✅ MEPSO data saved to {out_path} ({df['date'].nunique()} days, {df['demand'].count()} hourly values)")
+    # ── combine to single datetime column ────────────────────────────────
+    df["datetime"] = pd.to_datetime(df["date"]) + pd.to_timedelta(df["hour"] - 1, unit="h")
+    final_df = df[["datetime", "demand"]].sort_values("datetime")
+
+    # ── output ───────────────────────────────────────────────────────────
+    out_path = os.path.join(out_dir, "mepso_demand.csv")
+    final_df.to_csv(out_path, index=False, na_rep="")
+    print(
+        f"✅ MEPSO data saved to {out_path} "
+        f"({final_df['datetime'].dt.date.nunique()} days, "
+        f"{final_df['demand'].count()} hourly values)"
+    )
+
 
 if __name__ == "__main__":
     run()

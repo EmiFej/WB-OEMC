@@ -15,4 +15,6 @@
 .snakemake/
 ./energy_scrapers/__pycache__/
 /energy_scrapers/__init__.py
+/energy_scrapers/data/
 *.py[cod]
+*gurobi.log
