@@ -1,25 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-OST hourly demand scraper – "smart‑cache" edition
-=================================================
-Goal: **hold the 100 % coverage** of the balanced version **while regaining most
-of the speed** (≈ 35 s per full month with `MAX_WORKERS = 10`).
+OST hourly demand scraper
 
-Strategy
---------
-1. **Success cache** – as soon as a (folder‑month, suffix) pair yields one file
-   we try it *first* for the remaining days.
-2. **Probationary failure cache** – a pair must return **404 twice on different
-   days** before we permanently skip it. This prevents one early 404 from
-   hiding a late‑month file (cause of the missing 30‑31 bug).
-3. **HEAD then GET** – still keeps the GET fallback for servers that misreport
-   HEAD, but only for pairs that are *not yet* on the success list.
-4. **Early finish** – once every wanted day is collected we cancel remaining
-   futures.
-
-Empirically this runs a January sample (~31 days) in **30–40 s** while never
-missing 30/31.
 """
 import os
 import threading
