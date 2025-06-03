@@ -2,7 +2,6 @@ name: wb_oemc
 channels:
   - conda-forge
   - defaults
-  - conda-forge
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
@@ -71,11 +70,13 @@ dependencies:
       - appdirs==1.4.4
       - atlite==0.4.0
       - attrs==25.3.0
+      - beautifulsoup4==4.13.4
       - boltons==25.0.0
       - bottleneck==1.4.2
       - branca==0.8.1
       - build==1.2.2.post1
       - cachecontrol==0.14.2
+      - cattrs==24.1.3
       - cdsapi==0.7.5
       - certifi==2025.4.26
       - cffi==1.17.1
@@ -93,6 +94,7 @@ dependencies:
       - cycler==0.12.1
       - dask==2025.4.1
       - datapi==0.4.0
+      - deprecated==1.2.18
       - deprecation==2.1.0
       - distlib==0.3.9
       - docutils==0.21.2
@@ -105,6 +107,7 @@ dependencies:
       - folium==0.19.5
       - fonttools==4.57.0
       - fsspec==2025.3.2
+      - gdown==5.2.0
       - geopandas==1.0.1
       - gitdb==4.0.12
       - gitpython==3.1.44
@@ -117,6 +120,7 @@ dependencies:
       - jaraco-functools==4.1.0
       - jeepney==0.9.0
       - jinja2==3.1.6
+      - joblib==1.5.1
       - jsonschema==4.23.0
       - jsonschema-specifications==2025.4.1
       - jupyterlab-widgets==3.0.15
@@ -146,24 +150,29 @@ dependencies:
       - plotly-express==0.4.1
       - polars==1.28.1
       - progressbar2==4.5.0
+      - pyarrow==20.0.0
       - pycparser==2.22
       - pydantic==2.11.3
       - pydantic-core==2.33.1
       - pydot==3.0.4
+      - pygadm==0.5.3
       - pyogrio==0.10.0
       - pyparsing==3.2.3
       - pyproj==3.7.1
       - pyproject-hooks==1.2.0
       - pypsa==0.34.1
+      - pysocks==1.7.1
       - python-utils==3.9.1
       - pytz==2025.2
       - pyyaml==6.0.2
       - rasterio==1.4.3
       - referencing==0.36.2
       - requests==2.32.3
+      - requests-cache==1.2.1
       - requests-toolbelt==1.0.0
       - rpds-py==0.24.0
       - ruamel-yaml==0.18.10
+      - scikit-learn==1.6.1
       - scipy==1.15.2
       - seaborn==0.13.2
       - secretstorage==3.3.3
@@ -171,17 +180,21 @@ dependencies:
       - shapely==2.0.7
       - shellingham==1.5.4
       - smmap==5.0.2
+      - soupsieve==2.7
       - statsmodels==0.14.4
+      - threadpoolctl==3.6.0
       - tomlkit==0.13.2
       - toolz==1.0.0
       - tqdm==4.67.1
       - trove-classifiers==2025.4.11.15
       - typing-inspection==0.4.0
       - tzdata==2025.2
+      - url-normalize==2.2.1
       - urllib3==2.4.0
       - validators==0.34.0
       - virtualenv==20.30.0
       - widgetsnbextension==4.0.14
+      - wrapt==1.17.2
       - xarray==2025.3.1
       - xlrd==2.0.1
       - xyzservices==2025.4.0

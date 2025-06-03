@@ -22,3 +22,15 @@ export:
 	@echo "Exporting the environment..."
 	conda env export -n wb_oemc > env/environment.yml
 	@echo "Environment exported to env/environment.yml."
+
+submodule:
+	@echo "Updating submodules..."
+	git submodule update --init --recursive
+	@echo "Submodules updated."
+
+pypsa:
+	submodule
+	@echo "Installing pypsa..."
+	conda env create -f models/pypsa-eur/envs/linux-64.lock.yaml
+	conda activate pypsa-eur
+	conda install -c gurobi gurobi"=12.0.1"
