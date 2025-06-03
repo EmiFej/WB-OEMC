@@ -2,6 +2,10 @@
     path = models/pypsa-eur
     url = https://github.com/PyPSA/pypsa-eur
 
+[submodule "models/RESource"]
+	path = models/RESource
+	url = https://github.com/DeltaE/RESource
+	branch = WBR
 # [submodule "models/osemosys_global"]
 # 	path = models/osemosys_global
 # 	url = https://github.com/OSeMOSYS/osemosys_global
