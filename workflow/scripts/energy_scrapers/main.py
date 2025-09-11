@@ -13,14 +13,14 @@ all          – run every target above
 import argparse
 
 # demand scrapers (already present)
-from energy_scrapers import (
+from . import (
     download_mepso,
     download_ost,
     download_nosbih,
 )
 
 # generation-mix scraper (new module you added as *mepso_gen_scraper.py*)
-import energy_scrapers.mepso_gen_scraper as download_mepso_gen
+from . import mepso_gen_scraper as download_mepso_gen
 
 
 def main() -> None:
