@@ -25,8 +25,12 @@ SUM_THRES = 2_000                    # anything above → surely daily sum
 # ───────────── punctuation normaliser ───────────────────────────────────
 
 def normalise(tok: str) -> float:
-    """Return *tok* as float regardless of ,/. placement."""
     tok = re.sub(SPACE, "", tok)
+    # treat lone dot or comma groups as thousands separators
+    if re.fullmatch(r"\d{1,3}(?:\.\d{3})+", tok):
+        return float(tok.replace(".", ""))
+    if re.fullmatch(r"\d{1,3}(?:,\d{3})+", tok):
+        return float(tok.replace(",", ""))
     if "," in tok and "." in tok:
         pos = max(tok.rfind(","), tok.rfind("."))
         tok = tok[:pos].replace(",", "").replace(".", "") + "." + tok[pos + 1 :]
@@ -191,7 +195,7 @@ def run(overwrite: bool = False) -> None:
 
     # ── output ───────────────────────────────────────────────────────────
     out_path = os.path.join(out_dir, "mepso_demand.csv")
-    final_df.to_csv(out_path, index=False, na_rep="")
+    final_df.to_csv(out_path, index=False, na_rep="", float_format="%.0f")
     print(
         f"✅ MEPSO data saved to {out_path} "
         f"({final_df['datetime'].dt.date.nunique()} days, "
